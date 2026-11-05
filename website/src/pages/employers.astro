@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FormFooter from '../components/FormFooter.astro';
+
+const steps = [
+  { title: 'Share your requirement', text: 'Tell us about the role, skills, experience and budget you have in mind.' },
+  { title: 'We source candidates', text: 'We search our network and channels for people who fit your needs.' },
+  { title: 'Screening', text: 'We review qualifications and experience and conduct preliminary screening.' },
+  { title: 'Shortlist', text: 'You receive a shortlist of suitable profiles for your consideration.' },
+  { title: 'You decide', text: 'You run the interviews and make the final selection and hiring decision.' },
+];
+---
+
+<Layout title="For Employers" description="Hire through ELEVATE Consulting & Recruitment. We source, screen and shortlist candidates; you pay only when you hire.">
+  <PageHeader
+    eyebrow="For employers"
+    title="Hire the right talent, without the hassle"
+    intro="We take care of sourcing and screening so you can focus on interviewing the best-fit candidates."
+  />
+
+  <section class="py-20">
+    <div class="container-x">
+      <p class="eyebrow">Our process</p>
+      <h2 class="mt-3 text-3xl sm:text-4xl">How recruitment with ELEVATE works</h2>
+      <ol class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        {steps.map((s, i) => (
+          <li class="card">
+            <span class="grid h-9 w-9 place-items-center rounded-full bg-gold-500 text-sm font-bold text-navy-950">{i + 1}</span>
+            <h3 class="mt-4 text-base">{s.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="bg-navy-900 py-16 text-slate-300">
+    <div class="container-x grid gap-8 md:grid-cols-2">
+      <div>
+        <p class="eyebrow text-gold-400">Simple, transparent fees</p>
+        <h2 class="mt-3 text-3xl text-white">Pay only when you hire</h2>
+        <p class="mt-4 leading-relaxed">
+          Our recruitment service fee is <strong class="text-white">6% of the selected candidate's annual CTC</strong>. There are no upfront charges for sharing a requirement or receiving shortlisted profiles.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <h3 class="text-lg text-white">You stay in control</h3>
+        <p class="mt-3 text-sm leading-relaxed">
+          You retain complete authority over the interview process, final selection and hiring decision. Our services are free for candidates, so you meet people who are genuinely interested in the role.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="requirement" class="scroll-mt-20 bg-mist py-20">
+    <div class="container-x grid gap-12 lg:grid-cols-[1fr_1.5fr]">
+      <div>
+        <p class="eyebrow">Get started</p>
+        <h2 class="mt-3 text-3xl">Share your hiring requirement</h2>
+        <p class="mt-4 leading-relaxed">Fill in the details and our team will get in touch to understand the role better.</p>
+      </div>
+      <form data-form="employer" data-success="Thank you! We've received your requirement and will be in touch shortly." class="card grid gap-5 p-6 sm:p-8">
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div><label class="label" for="e-company">Company name *</label><input id="e-company" name="company" required class="field" autocomplete="organization" /></div>
+          <div><label class="label" for="e-name">Your name *</label><input id="e-name" name="name" required class="field" autocomplete="name" /></div>
+          <div><label class="label" for="e-email">Work email *</label><input id="e-email" name="email" type="email" required class="field" autocomplete="email" /></div>
+          <div><label class="label" for="e-phone">Phone *</label><input id="e-phone" name="phone" type="tel" required class="field" autocomplete="tel" /></div>
+          <div><label class="label" for="e-role">Role(s) to hire *</label><input id="e-role" name="roles" required class="field" /></div>
+          <div><label class="label" for="e-count">Number of openings</label><input id="e-count" name="openings" type="number" min="1" class="field" /></div>
+          <div><label class="label" for="e-loc">Job location</label><input id="e-loc" name="location" class="field" /></div>
+          <div><label class="label" for="e-ctc">Salary / CTC range</label><input id="e-ctc" name="salary" class="field" placeholder="e.g. 3–4 LPA" /></div>
+        </div>
+        <div><label class="label" for="e-details">Job details &amp; requirements</label><textarea id="e-details" name="details" rows="4" class="field" placeholder="Skills, experience, qualifications, timelines…"></textarea></div>
+        <FormFooter submitLabel="Submit requirement" />
+      </form>
+    </div>
+  </section>
+</Layout>

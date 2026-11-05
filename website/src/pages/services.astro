@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const education = [
+  { title: 'Career counselling', text: 'Understand your strengths and interests, and map them to the right career path.' },
+  { title: 'Course & college selection', text: 'Compare courses, colleges and universities in India and abroad to find the best fit.' },
+  { title: 'Applications & admissions', text: 'Hands-on help with university applications and the admission process.' },
+  { title: 'Pre-departure guidance', text: 'Practical preparation for students heading abroad for their studies.' },
+];
+
+const candidates = [
+  { title: 'Job placement support', text: 'We match your profile with suitable openings and share it with hiring employers.' },
+  { title: 'Interview preparation', text: 'Mock interviews and feedback so you walk in confident and prepared.' },
+  { title: 'Career guidance', text: 'Advice on your next move, whether you are a fresh graduate or an experienced professional.' },
+];
+---
+
+<Layout title="Services" description="Education consulting for students and parents, and recruitment services for job seekers and employers, from ELEVATE Consulting & Recruitment.">
+  <PageHeader
+    eyebrow="Our services"
+    title="Guidance for every stage of your journey"
+    intro="From choosing the right college to landing the right job, and from finding talent to growing your team."
+  />
+
+  <section id="education" class="scroll-mt-20 py-20">
+    <div class="container-x grid gap-12 lg:grid-cols-[1fr_1.4fr]">
+      <div>
+        <p class="eyebrow">For students &amp; parents</p>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Education Consulting</h2>
+        <p class="mt-5 leading-relaxed">
+          We help students and parents make informed decisions about academic pathways, courses, colleges and universities in India and abroad, with personalised support throughout the education journey.
+        </p>
+        <p class="mt-4 leading-relaxed">
+          We also work with schools, colleges and educational institutions to create awareness, strengthen student engagement and widen access to educational opportunities.
+        </p>
+        <a href="/contact" class="btn btn-dark mt-8">Book a counselling session</a>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2">
+        {education.map((s) => (
+          <div class="card">
+            <h3 class="text-lg">{s.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="careers" class="scroll-mt-20 bg-mist py-20">
+    <div class="container-x grid gap-12 lg:grid-cols-[1fr_1.4fr]">
+      <div>
+        <p class="eyebrow">For job seekers</p>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Career Services</h2>
+        <p class="mt-5 leading-relaxed">
+          We connect college students, fresh graduates and working professionals with meaningful career opportunities, and help them prepare to make the most of them.
+        </p>
+        <p class="mt-4 rounded-lg bg-white p-4 text-sm font-medium text-navy-900 shadow-sm">
+          Completely free for candidates: no registration, placement, consulting or service fees.
+        </p>
+        <a href="/careers" class="btn btn-dark mt-8">View job openings</a>
+      </div>
+      <div class="grid gap-5">
+        {candidates.map((s) => (
+          <div class="card">
+            <h3 class="text-lg">{s.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="recruitment" class="scroll-mt-20 py-20">
+    <div class="container-x grid items-center gap-10 lg:grid-cols-2">
+      <div>
+        <p class="eyebrow">For employers</p>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Recruitment Services</h2>
+        <p class="mt-5 leading-relaxed">
+          We help organisations find the right talent. We start by understanding your hiring requirements, then source, screen and shortlist suitable candidates for your consideration, while you keep full control of interviews and final selection.
+        </p>
+      </div>
+      <div class="card bg-navy-900 text-slate-300">
+        <h3 class="text-xl text-white">Hiring? Let's find your next team member.</h3>
+        <p class="mt-3 text-sm leading-relaxed">See how our process works and share your requirement in a couple of minutes.</p>
+        <a href="/employers" class="btn btn-primary mt-6">Hire through us</a>
+      </div>
+    </div>
+  </section>
+</Layout>

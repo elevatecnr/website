@@ -1,0 +1,165 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import PageHeader from '../components/PageHeader.astro';
+import santoshPhoto from '../assets/founders/santosh.jpg';
+
+// Extended profile content, shown below a founder's card when present.
+type Profile = {
+  stats: { value: string; label: string }[];
+  career: { role: string; org: string; years: string }[];
+  expertise: string[];
+  education: string[];
+  languages: string;
+  recognition: string[];
+};
+
+// TODO: Anand's details; add his photo to src/assets/founders/ and set `photo`.
+const founders: { name: string; initials: string; title: string; role: string; photo?: ImageMetadata; linkedin: string; instagram?: string; bio: string[]; profile?: Profile }[] = [
+  {
+    name: 'Santosh Shrestha',
+    initials: 'SS',
+    title: 'Founder & Managing Director',
+    role: 'Principal Consultant, Training & Recruitment',
+    photo: santoshPhoto,
+    linkedin: 'https://www.linkedin.com/in/santosh-shrestha-653a4aaa/',
+    instagram: 'https://www.instagram.com/santosh_shrestha_official',
+    bio: [
+      'Santosh brings more than 17 years of experience in retail operations, sales, training and business consulting across India and the UAE. Before founding ELEVATE, he led multi-store premium retail clusters for Apple Premium Resellers in West Bengal and Sikkim, owning end-to-end P&L and building, coaching and developing teams of more than 100 people.',
+      'At ELEVATE, he leads employer relationships, business development and service design. He designed the firm’s candidate-friendly model, in which candidates never pay a fee, and he coaches employers’ teams in selling skills, customer experience and leadership.',
+      'His career began in education, teaching and counselling students as a faculty member at AISECT Computer Institute.',
+    ],
+    profile: {
+      stats: [
+        { value: '17+', label: 'Years of experience' },
+        { value: '100+', label: 'Team members developed' },
+        { value: '2', label: 'Countries: India & UAE' },
+      ],
+      career: [
+        { role: 'Co-Founder, Coach & Consultant', org: 'ELEVATE Consulting & Recruitment, Siliguri', years: '2026 – Present' },
+        { role: 'Cluster Manager', org: 'iDestiny (Apple Premium Reseller), West Bengal & Sikkim', years: '2025 – 2026' },
+        { role: 'Business Head', org: 'imagine (Apple Premium Retail), West Bengal & Sikkim', years: '2020 – 2025' },
+        { role: 'Store Manager', org: 'ONLY, Bestseller India', years: '2019' },
+        { role: 'Store Manager', org: 'Kiddy Zone, Qatar National Trading, UAE', years: '2018' },
+        { role: 'Duty Manager', org: 'Toys"R"Us, Al-Futtaim Group, UAE', years: '2012 – 2018' },
+        { role: 'Department Manager', org: 'Babyshop, Landmark Group, Dubai', years: '2010 – 2012' },
+        { role: 'Faculty & Centre Entrepreneur', org: 'AISECT Computer Institute, India', years: '2007 – 2009' },
+      ],
+      expertise: [
+        'Sales & customer experience training',
+        'Leadership & manager coaching',
+        'Recruitment & talent consulting',
+        'Business development & sales strategy',
+        'SOP, KPI & performance management',
+        'Multi-store retail operations & P&L',
+      ],
+      education: [
+        'Bachelor’s in Economics, English & Indian History, North Bengal University',
+        'Diploma in Computer Applications, AISECT Institute',
+      ],
+      languages: 'English, Hindi, Nepali, Bengali',
+      recognition: [
+        'Commander, West Bengal & Sikkim Directorate, NCC Republic Day Camp, New Delhi (2005); NCC “C” Certificate holder',
+        'Selected to address the Prime Minister of India, representing the NCC North Bengal Battalion',
+        'Commendation from General N. C. Vij, then Chief of Army Staff',
+        'Gold Medalist, Civil Defence; certified in Disaster Management (Himalayan Institute)',
+      ],
+    },
+  },
+  {
+    name: 'Anand Sundas',
+    initials: 'AS',
+    title: 'Co-Founder',
+    role: 'Finance',
+    linkedin: '',
+    bio: ['Anand oversees finance at ELEVATE, keeping the firm’s operations sound as it grows.'],
+  },
+];
+---
+
+<Layout title="Our Founders" description="Meet the founders of ELEVATE Consulting & Recruitment: Santosh Shrestha (Founder & MD), with 17+ years in retail leadership, sales and training across India and the UAE, and Anand Sundas (Co-Founder).">
+  <PageHeader eyebrow="Our team" title="Meet our founders" intro="The people building ELEVATE, and what each of them leads." />
+
+  <section class="py-20">
+    <div class="container-x space-y-10">
+      {founders.map((f, i) => (
+        <article class:list={['card p-6 sm:p-10', i === 0 && 'border-t-4 border-t-gold-500']}>
+          <div class="grid gap-8 md:grid-cols-[260px_1fr]">
+            {f.photo ? (
+              <Image src={f.photo} alt={f.name} widths={[260, 520]} sizes="260px" class="aspect-[3/4] w-full max-w-[260px] rounded-2xl object-cover object-top" />
+            ) : (
+              <div class="grid aspect-[3/4] w-full max-w-[260px] place-items-center rounded-2xl bg-navy-900 text-6xl font-extrabold text-gold-400">{f.initials}</div>
+            )}
+            <div>
+              <h2 class="text-3xl">{f.name}</h2>
+              <p class="mt-1 text-lg font-semibold text-gold-600">{f.title}</p>
+              <p class="mt-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Responsibilities</p>
+              <p class="mt-1 font-medium text-navy-900">{f.role}</p>
+              <div class="mt-5 max-w-3xl space-y-3 leading-relaxed">
+                {f.bio.map((p) => <p>{p}</p>)}
+              </div>
+              {f.profile && (
+                <dl class="mt-6 grid max-w-xl grid-cols-3 gap-3">
+                  {f.profile.stats.map((s) => (
+                    <div class="rounded-xl bg-mist p-4">
+                      <dt class="sr-only">{s.label}</dt>
+                      <dd class="font-display text-2xl font-bold text-navy-900 sm:text-3xl">{s.value}</dd>
+                      <dd class="mt-1 text-xs leading-snug text-slate-600">{s.label}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+              <div class="mt-6 flex flex-wrap gap-3">
+                {f.linkedin && <a href={f.linkedin} target="_blank" rel="noopener" class="btn btn-dark py-2.5">Connect on LinkedIn</a>}
+                {f.instagram && <a href={f.instagram} target="_blank" rel="noopener" class="btn border border-slate-300 py-2.5 text-navy-900 hover:bg-mist">Instagram</a>}
+              </div>
+            </div>
+          </div>
+
+          {f.profile && (
+            <div class="mt-10 grid gap-10 border-t border-slate-200 pt-10 lg:grid-cols-[1.3fr_1fr]">
+              <div>
+                <h3 class="text-xl">Career journey</h3>
+                <ol class="mt-6 space-y-5 border-l-2 border-gold-500/40 pl-6">
+                  {f.profile.career.map((c) => (
+                    <li class="relative">
+                      <span class="absolute top-1.5 -left-[31px] h-3 w-3 rounded-full border-2 border-white bg-gold-500 ring-2 ring-gold-500/30"></span>
+                      <p class="text-xs font-semibold uppercase tracking-widest text-slate-500">{c.years}</p>
+                      <p class="mt-1 font-semibold text-navy-900">{c.role}</p>
+                      <p class="text-sm text-slate-600">{c.org}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <div class="space-y-8">
+                <div>
+                  <h3 class="text-xl">Expertise</h3>
+                  <ul class="mt-4 flex flex-wrap gap-2">
+                    {f.profile.expertise.map((e) => <li class="rounded-full bg-navy-900 px-3 py-1.5 text-xs font-medium text-white">{e}</li>)}
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="text-xl">Recognition</h3>
+                  <ul class="mt-4 space-y-3 text-sm leading-relaxed">
+                    {f.profile.recognition.map((r) => <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-500"></span>{r}</li>)}
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="text-xl">Education</h3>
+                  <ul class="mt-4 space-y-2 text-sm leading-relaxed">
+                    {f.profile.education.map((e) => <li>{e}</li>)}
+                  </ul>
+                </div>
+                <div>
+                  <h3 class="text-xl">Languages</h3>
+                  <p class="mt-3 text-sm">{f.profile.languages}</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>

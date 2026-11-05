@@ -1,0 +1,7 @@
+# Client form responses and freelancer notes (personal details, pricing): keep out of the repo
+*.csv
+ELEVATE_PROJECT_BRIEF.md
+
+# Local editor / tool settings
+.claude/
+.vscode/

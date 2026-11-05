@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+
+<Layout title="About Us" description="ELEVATE Consulting & Recruitment is a people and business advisory firm in Siliguri offering education consulting and recruitment services.">
+  <PageHeader
+    eyebrow="About us"
+    title="A people and business advisory firm"
+    intro="We help individuals with career guidance and educational opportunities, and support businesses with talent acquisition, connecting the right people with the right opportunities."
+  />
+
+  <section class="py-20">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <div>
+        <h2 class="text-3xl">Who we are</h2>
+        <div class="mt-5 space-y-4 leading-relaxed">
+          <p>
+            ELEVATE Consulting &amp; Recruitment is based in Siliguri and works with students, parents, job seekers, schools, colleges and employers.
+          </p>
+          <p>
+            Through personalised guidance, strategic solutions and practical expertise, we help students make informed decisions about their education, help candidates find meaningful careers, and help organisations find the right talent to grow.
+          </p>
+          <p>
+            Our purpose is simple: to empower people, strengthen businesses and create meaningful possibilities for sustainable growth.
+          </p>
+        </div>
+      </div>
+      <div class="grid gap-5">
+        <div class="card border-l-4 border-l-gold-500">
+          <p class="eyebrow">Our mission</p>
+          <p class="mt-3 leading-relaxed text-navy-900">
+            To empower individuals, strengthen businesses and create meaningful opportunities by delivering trusted consulting, strategic recruitment and quality education. We are committed to unlocking potential, building capabilities and connecting people with possibilities that drive sustainable growth and lasting success.
+          </p>
+        </div>
+        <div class="card border-l-4 border-l-navy-800">
+          <p class="eyebrow">Our vision</p>
+          <p class="mt-3 text-lg font-semibold leading-relaxed text-navy-900">
+            To be a trusted partner in shaping brighter futures, stronger businesses and greater opportunities.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-mist py-20">
+    <div class="container-x">
+      <p class="eyebrow">What makes us different</p>
+      <h2 class="mt-3 max-w-2xl text-3xl sm:text-4xl">Growth begins with understanding people and recognising possibilities</h2>
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <div class="card">
+          <h3 class="text-lg">Integrated, not isolated</h3>
+          <p class="mt-3 text-sm leading-relaxed">Unlike conventional providers that focus on a single function, we bring consulting, recruitment and education together for a more complete approach to growth.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-lg">Both sides of the table</h3>
+          <p class="mt-3 text-sm leading-relaxed">We understand individual aspirations and business objectives, so the matches we make work for candidates and employers alike.</p>
+        </div>
+        <div class="card">
+          <h3 class="text-lg">Beyond transactions</h3>
+          <p class="mt-3 text-sm leading-relaxed">We focus on building capabilities, connecting opportunities and developing relationships that last.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-x flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+      <h2 class="text-2xl">Meet the people behind ELEVATE.</h2>
+      <a href="/founders" class="btn btn-dark">Our founders</a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FormFooter from '../components/FormFooter.astro';
+---
+
+<Layout title="Careers & Job Openings" description="Current job openings through ELEVATE Consulting & Recruitment. Apply online and upload your resume — our services are free for candidates.">
+  <PageHeader
+    eyebrow="Careers"
+    title="Find your next opportunity"
+    intro="Browse current openings with our partner employers and apply in minutes. Our services are completely free for candidates."
+  />
+
+  <section class="py-20">
+    <div class="container-x">
+      <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+          <p class="eyebrow">Open positions</p>
+          <h2 class="mt-3 text-3xl">Current job openings</h2>
+        </div>
+        <a href="#apply" class="text-sm font-semibold text-navy-800 hover:text-gold-600">Don't see a fit? Send us your resume &rarr;</a>
+      </div>
+      <div id="jobs" class="mt-10 grid gap-5 md:grid-cols-2" aria-live="polite">
+        <p class="text-slate-500">Loading openings…</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="apply" class="scroll-mt-20 bg-mist py-20">
+    <div class="container-x grid gap-12 lg:grid-cols-[1fr_1.5fr]">
+      <div>
+        <p class="eyebrow">Apply</p>
+        <h2 class="mt-3 text-3xl">Submit your application</h2>
+        <p class="mt-4 leading-relaxed">
+          Apply for a specific role or send a general application. We review every profile and share suitable candidates with employers, who make the final selection.
+        </p>
+        <ul class="mt-6 space-y-2 text-sm">
+          <li>&#10003; No registration or placement fees</li>
+          <li>&#10003; Interview preparation support</li>
+          <li>&#10003; Your details are only shared with employers for relevant roles</li>
+        </ul>
+      </div>
+      <form data-form="application" data-success="Thank you! Your application has been received. We'll contact you if your profile matches a role." class="card grid gap-5 p-6 sm:p-8">
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div><label class="label" for="a-name">Full name *</label><input id="a-name" name="name" required class="field" autocomplete="name" /></div>
+          <div><label class="label" for="a-phone">Phone / WhatsApp *</label><input id="a-phone" name="phone" type="tel" required class="field" autocomplete="tel" /></div>
+          <div><label class="label" for="a-email">Email *</label><input id="a-email" name="email" type="email" required class="field" autocomplete="email" /></div>
+          <div><label class="label" for="a-location">Current location</label><input id="a-location" name="location" class="field" /></div>
+          <div><label class="label" for="a-job">Role applying for *</label><input id="a-job" name="job" required class="field" placeholder="e.g. Sales Executive, or General" /></div>
+          <div>
+            <label class="label" for="a-exp">Experience</label>
+            <select id="a-exp" name="experience" class="field">
+              <option>Fresher</option><option>Less than 1 year</option><option>1–3 years</option><option>3–5 years</option><option>5+ years</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="label" for="a-resume">Resume (PDF or Word, max 5 MB) *</label>
+          <input id="a-resume" name="resume" type="file" required accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="field file:mr-3 file:rounded-md file:border-0 file:bg-navy-900 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white" />
+        </div>
+        <div><label class="label" for="a-msg">Anything else?</label><textarea id="a-msg" name="message" rows="3" class="field"></textarea></div>
+        <FormFooter submitLabel="Submit application" />
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { site } from '../config';
+
+  type Job = { title: string; location: string; type: string; experience: string; salary: string; description: string };
+  const list = document.getElementById('jobs')!;
+  const jobInput = document.getElementById('a-job') as HTMLInputElement;
+
+  function el(tag: string, className: string, text?: string) {
+    const node = document.createElement(tag);
+    node.className = className;
+    if (text) node.textContent = text;
+    return node;
+  }
+
+  function showEmpty() {
+    list.replaceChildren(
+      el('p', 'card md:col-span-2 text-slate-600', 'There are no open positions listed right now. Send us your resume below and we will reach out when a suitable role opens up.'),
+    );
+  }
+
+  function render(jobs: Job[]) {
+    if (!jobs.length) return showEmpty();
+    list.replaceChildren(
+      ...jobs.map((job) => {
+        const card = el('article', 'card flex flex-col');
+        card.append(el('h3', 'text-xl', job.title));
+        const meta = el('div', 'mt-3 flex flex-wrap gap-2');
+        for (const tag of [job.location, job.type, job.experience, job.salary].filter(Boolean)) {
+          meta.append(el('span', 'rounded-full bg-mist px-3 py-1 text-xs font-medium text-navy-800', tag));
+        }
+        card.append(meta);
+        if (job.description) card.append(el('p', 'mt-4 flex-1 whitespace-pre-line text-sm leading-relaxed', job.description));
+        const apply = el('button', 'btn btn-dark mt-6 self-start py-2.5', 'Apply now');
+        apply.addEventListener('click', () => {
+          jobInput.value = job.title;
+          document.getElementById('apply')!.scrollIntoView();
+        });
+        card.append(apply);
+        return card;
+      }),
+    );
+  }
+
+  if (!site.appsScriptUrl) {
+    showEmpty();
+  } else {
+    fetch(`${site.appsScriptUrl}?action=jobs`)
+      .then((res) => res.json())
+      .then((data) => render(data.jobs ?? []))
+      .catch(showEmpty);
+  }
+</script>

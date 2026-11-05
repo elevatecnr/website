@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FormFooter from '../components/FormFooter.astro';
+import { site } from '../config';
+
+const details = [
+  { label: 'Phone / WhatsApp', value: site.phone, href: `tel:${site.phone.replace(/\s/g, '')}` },
+  { label: 'Email', value: site.email, href: `mailto:${site.email}` },
+  { label: 'Office', value: site.address.join('\n') },
+  { label: 'Hours', value: site.hours },
+].filter((d) => d.value);
+---
+
+<Layout title="Contact Us" description="Get in touch with ELEVATE Consulting & Recruitment in Siliguri for education consulting, job opportunities or recruitment services.">
+  <PageHeader eyebrow="Contact" title="Let's talk" intro="Questions about studies, jobs or hiring? Send us a message and we'll get back to you." />
+
+  <section class="py-20">
+    <div class="container-x grid gap-12 lg:grid-cols-[1fr_1.5fr]">
+      <div>
+        <h2 class="text-2xl">Reach us directly</h2>
+        <dl class="mt-6 space-y-5">
+          {details.map((d) => (
+            <div>
+              <dt class="text-xs font-semibold uppercase tracking-widest text-slate-500">{d.label}</dt>
+              <dd class="mt-1 whitespace-pre-line text-lg font-medium text-navy-900">{d.href ? <a href={d.href} class="hover:text-gold-600">{d.value}</a> : d.value}</dd>
+            </div>
+          ))}
+        </dl>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener" class="btn bg-[#25D366] text-white hover:bg-[#1ebe5b]">Chat on WhatsApp</a>
+          <a href={site.mapLink} target="_blank" rel="noopener" class="btn border border-slate-300 text-navy-900 hover:bg-mist">Get directions</a>
+        </div>
+      </div>
+
+      <form data-form="enquiry" class="card grid gap-5 p-6 sm:p-8">
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div><label class="label" for="c-name">Name *</label><input id="c-name" name="name" required class="field" autocomplete="name" /></div>
+          <div><label class="label" for="c-phone">Phone *</label><input id="c-phone" name="phone" type="tel" required class="field" autocomplete="tel" /></div>
+          <div><label class="label" for="c-email">Email</label><input id="c-email" name="email" type="email" class="field" autocomplete="email" /></div>
+          <div>
+            <label class="label" for="c-topic">I'm interested in</label>
+            <select id="c-topic" name="topic" class="field">
+              <option>Education consulting</option>
+              <option>Job opportunities</option>
+              <option>Hiring through ELEVATE</option>
+              <option>Partnership (school / college)</option>
+              <option>Something else</option>
+            </select>
+          </div>
+        </div>
+        <div><label class="label" for="c-msg">Message *</label><textarea id="c-msg" name="message" rows="5" required class="field"></textarea></div>
+        <FormFooter submitLabel="Send message" />
+      </form>
+    </div>
+  </section>
+
+  {site.mapEmbedUrl && (
+    <section>
+      <iframe src={site.mapEmbedUrl} title="ELEVATE office location" class="h-96 w-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+  )}
+</Layout>

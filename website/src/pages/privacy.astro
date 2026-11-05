@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { site } from '../config';
+---
+
+<Layout title="Privacy Policy" description="How ELEVATE Consulting & Recruitment collects, uses and protects your personal information.">
+  <PageHeader eyebrow="Legal" title="Privacy Policy" />
+
+  <section class="py-16">
+    <div class="container-x max-w-3xl space-y-8 leading-relaxed [&_h2]:mb-3 [&_h2]:text-xl">
+      <p class="text-sm text-slate-500">Last updated: November 2026</p>
+      <div>
+        <h2>What we collect</h2>
+        <p>When you contact us, apply for a job or submit a hiring requirement, we collect the details you provide: such as your name, phone number, email, location, work experience, resume and company details.</p>
+      </div>
+      <div>
+        <h2>How we use it</h2>
+        <p>We use your information only to respond to your enquiry, provide our education consulting and recruitment services, and, for candidates, to share your profile with employers for relevant roles. We do not sell your personal data.</p>
+      </div>
+      <div>
+        <h2>Storage and retention</h2>
+        <p>Your information is stored securely using Google services (Google Sheets and Google Drive) with access limited to the ELEVATE team. We keep it only for as long as needed to provide our services, or as required by law.</p>
+      </div>
+      <div>
+        <h2>Your rights</h2>
+        <p>You can ask us to access, correct or delete your personal data, or withdraw your consent, at any time by contacting us at {site.email || site.phone}.</p>
+      </div>
+      <div>
+        <h2>Contact</h2>
+        <p>{site.name}, {site.address.join(', ')}. Phone: {site.phone}{site.email && `, Email: ${site.email}`}.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

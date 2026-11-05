@@ -1,0 +1,131 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import { site } from '../config';
+import santoshPhoto from '../assets/founders/santosh-candid.jpg';
+
+const paths = [
+  {
+    who: 'Students & Parents',
+    title: 'Education Consulting',
+    text: 'Career counselling, course and college selection, and admission support for studying in India and abroad.',
+    href: '/services#education',
+    cta: 'Plan your education',
+  },
+  {
+    who: 'Job Seekers',
+    title: 'Career Opportunities',
+    text: 'Browse open roles, get interview preparation, and have your profile shared with hiring employers. 100% free.',
+    href: '/careers',
+    cta: 'View job openings',
+  },
+  {
+    who: 'Employers',
+    title: 'Recruitment Services',
+    text: 'We source, screen and shortlist candidates for your roles. You stay in control of interviews and hiring.',
+    href: '/employers',
+    cta: 'Hire through us',
+  },
+];
+
+const pillars = [
+  { title: 'An integrated approach', text: 'Consulting, recruitment and education under one roof, not isolated services.' },
+  { title: 'Practical experience', text: 'Guidance grounded in real industry experience, not generic advice.' },
+  { title: 'Personalised guidance', text: 'We start by understanding your aspirations or your business objectives.' },
+  { title: 'Lasting relationships', text: 'We go beyond transactions to build capability and long-term trust.' },
+];
+---
+
+<Layout>
+  <section class="relative overflow-hidden bg-navy-900 text-white">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(232,163,61,0.22),transparent_55%)]"></div>
+    <div class="container-x relative flex flex-col items-center py-20 text-center sm:py-28">
+      <p class="eyebrow text-gold-400">Consulting &middot; Recruitment &middot; Education</p>
+      <h1 class="mt-5 max-w-4xl text-4xl leading-[1.15] text-white sm:text-6xl">
+        Where potential meets <span class="text-gold-400">possibility.</span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
+        {site.name} helps students choose the right education path, helps job seekers find meaningful careers, and helps businesses hire the right talent.
+      </p>
+      <div class="mt-9 flex flex-wrap justify-center gap-3">
+        <a href="/careers" class="btn btn-primary">Explore job openings</a>
+        <a href="/employers" class="btn btn-outline">Hire through us</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="container-x">
+      <p class="eyebrow">How we help</p>
+      <h2 class="mt-3 max-w-2xl text-3xl sm:text-4xl">The right people, connected with the right opportunities</h2>
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {paths.map((p) => (
+          <div class="card flex flex-col">
+            <p class="text-xs font-semibold uppercase tracking-widest text-slate-500">{p.who}</p>
+            <h3 class="mt-2 text-xl">{p.title}</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed">{p.text}</p>
+            <a href={p.href} class="mt-6 text-sm font-semibold text-navy-800 hover:text-gold-600">{p.cta} &rarr;</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-gold-500">
+    <div class="container-x flex flex-col items-start justify-between gap-6 py-10 md:flex-row md:items-center">
+      <div>
+        <h2 class="text-2xl text-navy-950">Our services are completely free for candidates.</h2>
+        <p class="mt-2 text-navy-900/80">No registration, placement or service fees. Ever.</p>
+      </div>
+      <a href="/careers" class="btn btn-dark shrink-0">Submit your resume</a>
+    </div>
+  </section>
+
+  <section class="bg-mist py-20">
+    <div class="container-x grid gap-12 lg:grid-cols-[1fr_1.4fr]">
+      <div>
+        <p class="eyebrow">Why ELEVATE</p>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Growth begins with understanding people</h2>
+        <p class="mt-5 leading-relaxed">
+          We combine practical industry experience with a strong understanding of both individual aspirations and business objectives, to create solutions that deliver real value.
+        </p>
+        <a href="/about" class="btn btn-dark mt-8">About us</a>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2">
+        {pillars.map((p, i) => (
+          <div class="card">
+            <span class="grid h-10 w-10 place-items-center rounded-lg bg-navy-900 text-sm font-bold text-gold-400">0{i + 1}</span>
+            <h3 class="mt-4 text-lg">{p.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed">{p.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="container-x grid items-center gap-10 md:grid-cols-[auto_1fr]">
+      <Image src={santoshPhoto} alt="Santosh Shrestha, Founder & Managing Director" widths={[240, 480]} sizes="240px" class="aspect-[3/4] w-48 rounded-2xl object-cover object-top shadow-md sm:w-60" />
+      <div>
+        <p class="eyebrow">Meet our founder</p>
+        <h2 class="mt-3 text-3xl">Santosh Shrestha</h2>
+        <p class="mt-1 font-medium text-slate-500">Founder &amp; Managing Director</p>
+        <p class="mt-4 max-w-2xl leading-relaxed">
+          With more than 17 years in retail leadership, sales and training across India and the UAE, including leading Apple Premium Reseller clusters and developing teams of 100+ people, Santosh leads ELEVATE as its Principal Consultant for Training and Recruitment, guiding candidates and employers personally.
+        </p>
+        <a href="/founders" class="mt-6 inline-block text-sm font-semibold text-navy-800 hover:text-gold-600">Read more about our founders &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy-900">
+    <div class="container-x py-16 text-center">
+      <h2 class="text-3xl text-white">Let's talk about what's next for you.</h2>
+      <p class="mx-auto mt-3 max-w-xl text-slate-300">Whether you're planning your studies, looking for a job, or hiring, we're here to help.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/contact" class="btn btn-primary">Contact us</a>
+        <a href={`tel:${site.phone.replace(/\s/g, '')}`} class="btn btn-outline">Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+</Layout>

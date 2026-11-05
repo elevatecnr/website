@@ -1,0 +1,17 @@
+---
+// Shared tail for every form: spam honeypot, consent checkbox, submit button and status line.
+interface Props {
+  submitLabel: string;
+}
+const { submitLabel } = Astro.props;
+---
+
+<div class="hidden" aria-hidden="true">
+  <label>Leave this field empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+</div>
+<label class="flex items-start gap-3 text-sm text-slate-600">
+  <input type="checkbox" name="consent" value="yes" required class="mt-0.5 h-4 w-4 rounded border-slate-300 accent-navy-800" />
+  <span>I agree to ELEVATE storing and using these details to respond to me, as described in the <a href="/privacy" class="font-medium text-navy-800 underline">Privacy Policy</a>.</span>
+</label>
+<button type="submit" class="btn btn-dark w-full disabled:opacity-60 sm:w-auto">{submitLabel}</button>
+<p data-status role="status" class="hidden"></p>
