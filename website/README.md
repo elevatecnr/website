@@ -24,13 +24,11 @@ npm run build    # outputs to dist/
 
 Search for `TODO` to find everything still waiting on the client.
 
-## Deploy (Netlify / Vercel / Cloudflare Pages)
+## Deploy (Netlify)
 
-- Base directory: `website`
-- Build command: `npm run build`
-- Output directory: `dist`
+Build settings are in `../netlify.toml` (base `website`, command `npm run build`, publish `dist`, Node 24). Connect the GitHub repo in Netlify and every push to `main` deploys automatically.
 
-Then point the client's domain at the host and update `site.url` in `src/config.ts`.
+Then point `elevatecnr.com` at Netlify in GoDaddy DNS: change only the `@` A record and the `www` CNAME. Leave the MX/TXT records alone, because they run the Google Workspace email.
 
 ## Before launch
 
