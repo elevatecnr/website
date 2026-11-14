@@ -101,7 +101,8 @@ function getResumeFolder() {
 }
 
 function notify(form, values) {
-  const body = form.fields.map((field, i) => `${field}: ${values[i]}`).join('\n');
+  // Drop the apostrophe clean() adds for the Sheet, so "+91 …" reads normally in the email.
+  const body = form.fields.map((field, i) => `${field}: ${String(values[i]).replace(/^'(?=[=+\-@])/, '')}`).join('\n');
   const sheetUrl = SpreadsheetApp.getActive().getUrl();
   MailApp.sendEmail(NOTIFY_EMAIL, `[ELEVATE website] ${form.label}`, `${body}\n\nAll submissions: ${sheetUrl}`);
 }
