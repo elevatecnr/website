@@ -1,7 +1,7 @@
 // All client-specific details live here. Items marked TODO are still awaited from the client.
 
-// The building name alone matches several places on Google Maps, so the search uses the road and area.
-const mapQuery = encodeURIComponent('Nivedita Road, Pradhan Nagar, Siliguri, West Bengal 734003');
+// Exact office pin, shared by the client (14 Nov 2026).
+const mapQuery = '26.728017,88.418472';
 
 export const site = {
   name: 'ELEVATE Consulting & Recruitment',
@@ -11,7 +11,7 @@ export const site = {
   url: 'https://elevatecnr.com',
 
   phone: '+91 74777 22707',
-  whatsapp: '917477722707', // digits only, with country code. TODO: confirm WhatsApp is on this number
+  whatsapp: '917477722707', // digits only, with country code
   email: 'consult@elevatecnr.com',
   city: 'Siliguri, West Bengal',
   address: [
@@ -21,8 +21,7 @@ export const site = {
     'Siliguri, West Bengal 734003, India',
   ],
   hours: '10:00 AM – 7:00 PM', // TODO: which days?
-  // Pinned by address search. TODO: replace with the exact pin from Santosh (Maps → Share → Embed a map → src)
-  mapEmbedUrl: `https://www.google.com/maps?q=${mapQuery}&z=16&output=embed`,
+  mapEmbedUrl: `https://www.google.com/maps?q=${mapQuery}&z=17&output=embed`,
   mapLink: `https://www.google.com/maps/search/?api=1&query=${mapQuery}`,
 
   social: {

@@ -24,21 +24,30 @@ npm run build    # outputs to dist/
 
 Search for `TODO` to find everything still waiting on the client.
 
-## Deploy (Netlify)
+## Deploy (Firebase Hosting)
 
-Build settings are in `../netlify.toml` (base `website`, command `npm run build`, publish `dist`, Node 24). Connect the GitHub repo in Netlify and every push to `main` deploys automatically.
+Hosting settings are in `../firebase.json` (serves `website/dist` at clean URLs: `/about`, not `/about.html`); `../.firebaserc` points at the Firebase project `elevate-cnr`. From the repo root:
 
-Then point `elevatecnr.com` at Netlify in GoDaddy DNS: change only the `@` A record and the `www` CNAME. Leave the MX/TXT records alone, because they run the Google Workspace email.
+```sh
+npm --prefix website run build
+npx firebase-tools login                 # once, with the ELEVATE Google account
+npx firebase-tools deploy --only hosting
+```
+
+Domain: in the Firebase console, Hosting → Add custom domain → `elevatecnr.com` (and `www.elevatecnr.com` redirecting to it). In GoDaddy DNS, replace only the `@` A records with the ones Firebase shows and add its `hosting-site=` TXT record. Leave MX, DKIM (`google._domainkey`), DMARC (`_dmarc`) and the existing TXT records alone, because they run the Google Workspace email.
 
 ## Before launch
 
 - [x] Logo
 - [x] Company email, Instagram, Facebook
 - [x] Full address, hours, phone
-- [ ] Exact Google Maps pin (currently found by address search), office days, WhatsApp on +91 74777 22707, company LinkedIn page (if any)
+- [x] Exact Google Maps pin
+- [x] WhatsApp on +91 74777 22707
+- [ ] Office days, company LinkedIn page (if any)
 - [x] Santosh's photos
 - [x] Santosh's CV details
-- [ ] Anand's photo and bio
-- [ ] Client OK to show the 6% fee publicly (`employers.astro`)
+- [x] Anand's photo
+- [ ] Anand's bio and LinkedIn
+- [x] Client OK to show the 6% fee publicly (`employers.astro`)
 - [x] Apps Script deployed and `appsScriptUrl` set; all three forms tested end to end (5 Nov)
 - [ ] Domain `elevatecnr.com` pointed at the host (`site.url` is already set)

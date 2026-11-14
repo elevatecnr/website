@@ -5,3 +5,7 @@ ELEVATE_PROJECT_BRIEF.md
 # Local editor / tool settings
 .claude/
 .vscode/
+
+# Firebase CLI cache and logs
+.firebase/
+*-debug.log
