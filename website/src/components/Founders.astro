@@ -1,8 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import PageHeader from '../components/PageHeader.astro';
 import santoshPhoto from '../assets/founders/santosh.jpg';
 import anandPhoto from '../assets/founders/anand.jpg';
 
@@ -38,7 +36,7 @@ const founders: { name: string; initials: string; title: string; role: string; p
         { value: '2', label: 'Countries: India & UAE' },
       ],
       career: [
-        { role: 'Co-Founder, Coach & Consultant', org: 'ELEVATE Consulting & Recruitment, Siliguri', years: '2026 – Present' },
+        { role: 'Founder & Managing Director', org: 'ELEVATE Consulting & Recruitment, Siliguri', years: '2026 – Present' },
         { role: 'Cluster Manager', org: 'iDestiny (Apple Premium Reseller), West Bengal & Sikkim', years: '2025 – 2026' },
         { role: 'Business Head', org: 'imagine (Apple Premium Retail), West Bengal & Sikkim', years: '2020 – 2025' },
         { role: 'Store Manager', org: 'ONLY, Bestseller India', years: '2019' },
@@ -80,11 +78,12 @@ const founders: { name: string; initials: string; title: string; role: string; p
 ];
 ---
 
-<Layout title="Our Founders" description="Meet the founders of ELEVATE Consulting & Recruitment: Santosh Shrestha (Founder & MD), with 17+ years in retail leadership, sales and training across India and the UAE, and Anand Sundas (Co-Founder).">
-  <PageHeader eyebrow="Our team" title="Meet our founders" intro="The people building ELEVATE, and what each of them leads." />
-
-  <section class="py-20">
-    <div class="container-x space-y-10">
+<section id="founders" class="scroll-mt-20 py-20">
+  <div class="container-x">
+    <p class="eyebrow">Our founders</p>
+    <h2 class="mt-3 max-w-2xl text-3xl sm:text-4xl">The people behind ELEVATE</h2>
+  </div>
+  <div class="container-x mt-12 space-y-10">
       {founders.map((f, i) => (
         <article class:list={['card p-6 sm:p-10', i === 0 && 'border-t-4 border-t-gold-500']}>
           <div class="grid gap-8 md:grid-cols-[260px_1fr]">
@@ -94,7 +93,7 @@ const founders: { name: string; initials: string; title: string; role: string; p
               <div class="grid aspect-[3/4] w-full max-w-[260px] place-items-center rounded-2xl bg-navy-900 text-6xl font-extrabold text-gold-400">{f.initials}</div>
             )}
             <div>
-              <h2 class="text-3xl">{f.name}</h2>
+              <h3 class="text-3xl">{f.name}</h3>
               <p class="mt-1 text-lg font-semibold text-gold-600">{f.title}</p>
               <p class="mt-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Responsibilities</p>
               <p class="mt-1 font-medium text-navy-900">{f.role}</p>
@@ -122,7 +121,7 @@ const founders: { name: string; initials: string; title: string; role: string; p
           {f.profile && (
             <div class="mt-10 grid gap-10 border-t border-slate-200 pt-10 lg:grid-cols-[1.3fr_1fr]">
               <div>
-                <h3 class="text-xl">Career journey</h3>
+                <h4 class="text-xl">Career journey</h4>
                 <ol class="mt-6 space-y-5 border-l-2 border-gold-500/40 pl-6">
                   {f.profile.career.map((c) => (
                     <li class="relative">
@@ -136,25 +135,25 @@ const founders: { name: string; initials: string; title: string; role: string; p
               </div>
               <div class="space-y-8">
                 <div>
-                  <h3 class="text-xl">Expertise</h3>
+                  <h4 class="text-xl">Expertise</h4>
                   <ul class="mt-4 flex flex-wrap gap-2">
                     {f.profile.expertise.map((e) => <li class="rounded-full bg-navy-900 px-3 py-1.5 text-xs font-medium text-white">{e}</li>)}
                   </ul>
                 </div>
                 <div>
-                  <h3 class="text-xl">Recognition</h3>
+                  <h4 class="text-xl">Recognition</h4>
                   <ul class="mt-4 space-y-3 text-sm leading-relaxed">
                     {f.profile.recognition.map((r) => <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-500"></span>{r}</li>)}
                   </ul>
                 </div>
                 <div>
-                  <h3 class="text-xl">Education</h3>
+                  <h4 class="text-xl">Education</h4>
                   <ul class="mt-4 space-y-2 text-sm leading-relaxed">
                     {f.profile.education.map((e) => <li>{e}</li>)}
                   </ul>
                 </div>
                 <div>
-                  <h3 class="text-xl">Languages</h3>
+                  <h4 class="text-xl">Languages</h4>
                   <p class="mt-3 text-sm">{f.profile.languages}</p>
                 </div>
               </div>
@@ -163,5 +162,4 @@ const founders: { name: string; initials: string; title: string; role: string; p
         </article>
       ))}
     </div>
-  </section>
-</Layout>
+</section>

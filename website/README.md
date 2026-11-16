@@ -16,7 +16,8 @@ npm run build    # outputs to dist/
 |---|---|
 | Company details, phone, email, socials, map, backend URL | `src/config.ts` |
 | Pages | `src/pages/*.astro` |
-| Founder bios and photos | `src/pages/founders.astro` (photos go in `src/assets/founders/`) |
+| Founder bios and photos | `src/components/Founders.astro`, shown on the About page (photos go in `src/assets/founders/`); `/founders` redirects to `/about#founders` (`../firebase.json`) |
+| Home page photos | `src/assets/home/` (stock photos, sources in `SOURCES.md`; replace with own photos using the same file names) |
 | Logo and favicon | `public/logo.png` (header), `public/logo-full.png` (footer, shown white), `public/favicon.png`, `public/og.png` (link preview); original logo file in `brand/` |
 | Header, footer, WhatsApp button | `src/layouts/Layout.astro` |
 | Form submission logic | `src/scripts/forms.ts` |

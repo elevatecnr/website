@@ -9,3 +9,6 @@ ELEVATE_PROJECT_BRIEF.md
 # Firebase CLI cache and logs
 .firebase/
 *-debug.log
+
+# Screen recordings for the client
+videos/

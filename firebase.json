@@ -2,6 +2,9 @@
   "hosting": {
     "public": "website/dist",
     "cleanUrls": true,
-    "trailingSlash": false
+    "trailingSlash": false,
+    "redirects": [
+      { "source": "/founders", "destination": "/about#founders", "type": 301 }
+    ]
   }
 }

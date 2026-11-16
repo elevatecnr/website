@@ -38,7 +38,6 @@ export const nav = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
-  { href: '/founders', label: 'Founders' },
   { href: '/careers', label: 'Careers' },
   { href: '/employers', label: 'For Employers' },
 ];
