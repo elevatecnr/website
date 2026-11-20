@@ -43,7 +43,7 @@ Domain: in the Firebase console, Hosting → Add custom domain → `elevatecnr.c
 - [x] Company email, Instagram, Facebook
 - [x] Full address, hours, phone
 - [x] Exact Google Maps pin
-- [x] WhatsApp on +91 74777 22707
+- [x] Phones +91 74777 22706 and 22707; WhatsApp on 22706
 - [ ] Office days, company LinkedIn page (if any)
 - [x] Santosh's photos
 - [x] Santosh's CV details

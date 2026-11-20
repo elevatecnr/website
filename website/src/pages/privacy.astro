@@ -28,7 +28,7 @@ import { site } from '../config';
       </div>
       <div>
         <h2>Contact</h2>
-        <p>{site.name}, {site.address.join(', ')}. Phone: {site.phone}{site.email && `, Email: ${site.email}`}.</p>
+        <p>{site.name}, {site.address.join(', ')}. Phone: {site.phones.join(', ')}{site.email && `, Email: ${site.email}`}.</p>
       </div>
     </div>
   </section>

@@ -4,12 +4,14 @@ import PageHeader from '../components/PageHeader.astro';
 import FormFooter from '../components/FormFooter.astro';
 import { site } from '../config';
 
-const details = [
-  { label: 'Phone / WhatsApp', value: site.phone, href: `tel:${site.phone.replace(/\s/g, '')}` },
-  { label: 'Email', value: site.email, href: `mailto:${site.email}` },
+const tel = (p: string) => `tel:${p.replace(/\s/g, '')}`;
+const details: { label: string; value?: string; links?: { value: string; href: string; external?: boolean }[] }[] = [
+  { label: 'Phone', links: site.phones.map((p) => ({ value: p, href: tel(p) })) },
+  { label: 'WhatsApp', links: [{ value: site.phone, href: `https://wa.me/${site.whatsapp}`, external: true }] },
+  { label: 'Email', links: [{ value: site.email, href: `mailto:${site.email}` }] },
   { label: 'Office', value: site.address.join('\n') },
   { label: 'Hours', value: site.hours },
-].filter((d) => d.value);
+].filter((d) => d.value || d.links?.length);
 ---
 
 <Layout title="Contact Us" description="Get in touch with ELEVATE Consulting & Recruitment in Siliguri for education consulting, job opportunities or recruitment services.">
@@ -23,7 +25,11 @@ const details = [
           {details.map((d) => (
             <div>
               <dt class="text-xs font-semibold uppercase tracking-widest text-slate-500">{d.label}</dt>
-              <dd class="mt-1 whitespace-pre-line text-lg font-medium text-navy-900">{d.href ? <a href={d.href} class="hover:text-gold-600">{d.value}</a> : d.value}</dd>
+              <dd class="mt-1 whitespace-pre-line text-lg font-medium text-navy-900">
+                {d.links ? d.links.map((l) => (
+                  <a href={l.href} class="block hover:text-gold-600" {...(l.external ? { target: '_blank', rel: 'noopener' } : {})}>{l.value}</a>
+                )) : d.value}
+              </dd>
             </div>
           ))}
         </dl>

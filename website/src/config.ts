@@ -3,6 +3,9 @@
 // Exact office pin, shared by the client (14 Nov 2026).
 const mapQuery = '26.728017,88.418472';
 
+// Primary number first: it is also the WhatsApp number.
+const phones = ['+91 74777 22706', '+91 74777 22707'];
+
 export const site = {
   name: 'ELEVATE Consulting & Recruitment',
   shortName: 'ELEVATE',
@@ -10,8 +13,9 @@ export const site = {
   founded: 2026,
   url: 'https://elevatecnr.com',
 
-  phone: '+91 74777 22707',
-  whatsapp: '917477722707', // digits only, with country code
+  phones,
+  phone: phones[0], // used where only one number fits (buttons, form error messages)
+  whatsapp: '917477722706', // digits only, with country code
   email: 'consult@elevatecnr.com',
   city: 'Siliguri, West Bengal',
   address: [

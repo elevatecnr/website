@@ -106,7 +106,7 @@ const socials = Object.entries(site.social).filter(([, url]) => url);
         <div>
           <p class="text-sm font-semibold text-white">Get in touch</p>
           <ul class="mt-4 space-y-2 text-sm">
-            <li><a href={`tel:${site.phone.replace(/\s/g, '')}`} class="hover:text-white">{site.phone}</a></li>
+            {site.phones.map((p) => <li><a href={`tel:${p.replace(/\s/g, '')}`} class="hover:text-white">{p}</a></li>)}
             {site.email && <li><a href={`mailto:${site.email}`} class="hover:text-white">{site.email}</a></li>}
             <li class="whitespace-pre-line">{site.address.join('\n')}</li>
             {site.hours && <li>{site.hours}</li>}
